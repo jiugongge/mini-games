@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='zh'>
+	<head>
+		<meta charset="UTF-8">
+		<title>贪吃的蛇</title>
+		<!--引入css文件-->
+		<link rel="stylesheet" type="text/css" href="css/gluttonousSnake.css"/>
+	</head>
+	<body>
+		<!--创建游戏容器-->
+		<div id="wrap">
+			<div class="textNew">贪吃的蛇</div>
+			<div id="box">得分：0</div>
+			<!--游戏显示框-->
+			<div id="box2"></div>
+		</div>
+		
+		<!--结束游戏-->
+		<div id="finish">
+			<p class="p1">撞死了~~~</p>
+			<p class="p2">历史最高分：<span id="sp1"></span></p>
+			<p class="p2">本次的得分：<span id="sp2"></span></p>
+			<button id="btn1">重新开始</button>
+			<button id="btn2">结束游戏</button>
+		</div>
+		<!--开始游戏-->
+		<div id="go">
+			<img src="img/de764808a4371732742c4001f5b79379.gif"width="120"/>
+			<p>游戏玩法</p>
+			<p>按←↑→↓控制上下左右移动</p>
+			<button id="btn3">开始游戏</button>
+		</div>
+		
+		
+		<audio id="uu" autoplay loop>背景音乐</audio>
+		<audio  id="audo" autoplay="autoplay"></audio>
+		<audio id="si" autoplay="autoplay"></audio>
+		<audio id="ads" autoplay="autoplay"></audio>
+	</body>
+	<!--引入jQ库-->
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--引入js文件-->
+	<script src="js/gluttonousSnake.js" type="text/javascript" charset="utf-8"></script>
+</html>

@@ -1,0 +1,109 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#wrap{
+	width: 1024px;
+	height: 655px;
+	background: url(../img/dea5e3f7402ea89639b0aeb0decc8f3d.jpg);
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.textNew{
+	font-size: 50px;
+	color: #FF6600;
+	text-shadow: 0 0 10px green;
+}
+#box{
+	position: absolute;
+	top: 80px;
+	right: 120px;
+	font-size: 30px;
+	color: red;
+}
+#box2{
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	bottom: 100px;
+	left: 102px;
+	border: 10px ridge yellowgreen;
+	font-size: 0;
+}
+#box2 div{
+	width: 18px;
+	height: 18px;
+	border: 1px solid white;
+	border-radius:3px ;
+	display: inline-block;
+	/*border-radius: 50%;*/
+	background:#F08080 ;
+}
+#finish{
+	width: 350px ;
+	height: 230px;
+	margin: 0 auto;
+	background: rgba(0,0,0,0.4);
+	border-radius:10px ;
+	box-shadow: 0 0 30px black;
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+	display: none;
+	animation: name 1s linear forwards;
+	
+}
+#finish p {
+	font-size: 30px;
+	padding: 5px;
+	font-weight:800 ;
+	color:yellow;
+	text-shadow: 0 0 10px #FF6600;
+}
+
+#finish .p2 span{
+	color: #FF6600;
+}
+#go{
+	width: 400px ;
+	height: 240px;
+	margin: 0 auto;
+	background: #000000;
+	box-shadow: 0 0 40px black;
+	border-radius:10px ;
+	position: absolute;
+	top: 22%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	
+}
+#go p{
+	font-size: 18px;
+	color: #FFCC00;
+}
+
+
+
+
+button{
+	padding: 5px 10px;
+	margin: 15px 20px;
+	font-size: 20px;
+	color: white;
+	background: #E38D13;
+	border-radius:4px;
+	outline: none;
+}
+
+@keyframes name{
+	from{
+		top: 5%;
+	}
+	to{
+		top: 22%;
+	}
+}

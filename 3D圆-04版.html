@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>3D圆-04版</title>
+		<style type="text/css">
+			#myCanvas {
+				display: block;
+				margin: auto;
+				background: black;
+				cursor: pointer;
+			}
+			
+			#btn {
+				display: block;
+				padding: 5px 15px;
+				background: #00BFFF;
+				color: white;
+				margin: 5px auto;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="1000" height="600">您的浏览器不支持canvas，请更新浏览器版本后再浏览</canvas>
+		<button id="btn">停止</button>
+	</body>
+	<script type="text/javascript">
+		var my = document.getElementById('myCanvas'); //获取画布
+		var ctx = my.getContext('2d'); //获取画笔
+		//坐标轴原点（画布中心）
+		var vpx = my.width / 2;
+		var vpy = my.height / 2;
+		var Radius = 150; //最大圆半径
+		//横向层级数(每隔10°)
+		var LayerBallNum = 360 / 10;
+		var balls = []; //所有小圆点的数组。
+		//旋转的角度（旋转速度）
+		var angleX = Math.PI / 100;
+		var angleY = Math.PI / 100;
+		var isrunning = true; //计时器开关；
+
+		//计算层数
+		function animation() {
+			//半球的层数
+			var num = LayerBallNum / 2;
+			for(var i = 0; i <= num; i++) {
+				var l = new layer(i, 1); //实例化一层次
+				var l = new layer(i, -1); //下半球
+			}
+		}
+
+		/*
+		 * num是层数
+		 * up为圆的上下半球部分
+		 * radius 三维球的环在二维上的上的投影半径（圆环的半径）
+		 * Radius:圆的最大半径。
+		 * num * Math.PI * 2 / LayerBallNum；计算角度
+		 * Radius * Math.cos(num * Math.PI * 2 / LayerBallNum)；计算边b（z轴坐标）
+		 * Math.sqrt(Math.pow(Radius, 2) - Math.pow(Radius * Math.cos(num * Math.PI * 2 / LayerBallNum), 2))；计算边a（x轴坐标）三维圆环在二维平面的投影距离。
+		 * 
+		 */
+
+		//声明一个层的类
+		var layer = function(num, up) {
+			this.radius = Math.sqrt(Math.pow(Radius, 2) - Math.pow(Radius * Math.cos(num * Math.PI / LayerBallNum), 2));
+			this.up = up; //上下半球
+			this.setBalls(this.radius); //方法
+		}
+		//层的原型方法
+		layer.prototype = {
+			setBalls: function(radius) { //创建在圆环上的小圆点
+				for(var i = 0; i < LayerBallNum; i++) {
+					//角度
+					var angle = 2 * Math.PI / LayerBallNum * i
+					//实例化一个小圆点
+					var b = new ball(radius * Math.cos(angle), radius * Math.sin(angle), this.up * Math.sqrt(Math.pow(Radius, 2) - Math.pow(radius, 2))); //this.up*Math.sqrt(Math.pow(Radius,2)-Math.pow(radius,2))计算的是z轴的坐标
+
+					b.paint(); //小圆点原型方法
+					balls.push(b); //添加到数组
+
+				}
+			}
+		};
+
+		/*
+		 * x,y:绘制点坐标
+		 * z:三维图形上的距里。(z轴上的坐标)
+		 * r:绘制圆点的半径
+		 */
+
+		//声明一个小圆点的类
+		var ball = function(x, y, z) {
+			this.x = x;
+			this.y = y;
+			this.z = z;
+			this.r = 1.5;
+		};
+		//小圆点类的方法
+		ball.prototype = {
+			//绘制小圆点
+			paint: function() {
+				var fl = 450; //焦点
+				//圆点的比例大小(视觉在前的圆点的大,后面的圆点小)
+				var scale = fl / (fl - this.z);
+				//圆点的透明度（视觉在前的圆点透明度小，后面透明度高）
+				var alpha = (this.z + Radius) / (2 * Radius);
+				ctx.beginPath();
+				ctx.arc(vpx + this.x, vpy + this.y, this.r * scale, 0, 2 * Math.PI);
+				ctx.fillStyle = "rgba(20,205,255," + (alpha + 0.5) + ")";
+				ctx.fill();
+			}
+		}
+
+		//鼠标在画布上移动
+		my.onmousemove = function() {
+			var e = event || window.event;
+			//基于坐标圆点的方位
+			var x = e.clientX - my.offsetLeft - vpx;
+			var y = e.clientY - my.offsetTop - vpx;
+			//旋转的角度（旋转速度）
+			angleX = -y * 0.0001; //获取的是坐标值，乘以0.0001，可以转换为相似角度值
+			angleY = -x * 0.0001;
+		};
+		//以X轴旋转
+		function rotateX(){
+			var cos = Math.cos(angleX);
+			var sin = Math.sin(angleX);
+			for (var i = 0;i<balls.length;i++) {
+				var y1 = balls[i].y*cos - balls[i].z*sin;
+				var z1 = balls[i].z * cos + balls[i].y * sin;
+				balls[i].y = y1;
+				balls[i].z = z1;
+			}
+		}
+		//以Y轴旋转
+		function rotateY() {
+			var cos = Math.cos(angleY);
+			var sin = Math.sin(angleY);
+			for(var i = 0; i < balls.length; i++) {
+				var x1 = balls[i].x * cos - balls[i].z * sin;
+				var z1 = balls[i].z * cos + balls[i].x * sin;
+				balls[i].x = x1;
+				balls[i].z = z1;
+			}
+		}
+		//以Z轴旋转
+		function rotateZ() {
+			var cos = Math.cos(angleY);
+			var sin = Math.sin(angleY);
+			for(var i = 0; i < balls.length; i++) {
+				var x1 = balls[i].x * cos - balls[i].y * sin;
+				var y1 = balls[i].y * cos + balls[i].x * sin;
+				balls[i].x = x1;
+				balls[i].y = y1;
+			}
+		}
+
+		//绘制
+		function animate() {
+			ctx.clearRect(0, 0, my.width, my.height);
+			rotateX(); //以X轴旋转
+			rotateY();//以Y轴旋转
+			rotateZ();//以Z轴旋转
+
+			//创建每个小圆点
+			for(var i = 0; i < balls.length; i++) {
+				balls[i].paint();
+			}
+			if(isrunning) {
+				if("requestAnimationFrame" in window) {
+					requestAnimationFrame(animate);
+				} else if("webkitRequestAnimationFrame" in window) {
+					webkitRequestAnimationFrame(animate);
+				} else if("msRequestAnimationFrame" in window) {
+					msRequestAnimationFrame(animate);
+				} else if("mozRequestAnimationFrame" in window) {
+					mozRequestAnimationFrame(animate);
+				}
+			}
+
+		}
+		animate()
+
+		//开始
+		function start() {
+			isrunning = true;
+			animate();
+		}
+		//停止
+		function stop() {
+			isrunning = false;
+		}
+
+		//调用层数函数
+		animation();
+
+		document.getElementById('btn').onclick = function() {
+			this.innerText === '开始' ? this.innerText = '停止' : this.innerText = '开始';
+			this.innerText === '开始' ? stop() : start();
+		}
+	</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>简洁的画板</title>
+		<style type="text/css">
+			/*画板*/
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: rgb(240,248,251);
+			}
+			/*样式设置*/
+			
+			nav {
+				width: 1000px;
+				height: 50px;
+				background: white;
+				box-shadow: 0 0 10px black;
+				margin: 10px auto 30px;
+			}
+			button{
+				margin: 5px 0;
+				padding: 5px 10px;
+				font-size: 18px;
+				border-radius:5px;
+				background: #00BFFF;
+				color: white;
+			}
+			span{
+				padding: 5px;
+				border: 1px solid gainsboro;
+				color: white;
+				background: #985F0D;
+			}
+			input{
+				border: 1px solid #666666;
+			}
+			#newColor{
+				display: inline-block;
+				height: 33px;
+				position: relative;
+				top: 6px;
+			}
+			
+			#newNumber,
+			#newEraser {
+				width: 50px;
+				height: 30px;
+				font-size: 18px;
+			}
+			/*画板样式*/
+			
+			#myCanvas {
+				background: white;
+				display: block;
+				box-shadow: 0 0 20px black;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav>
+			<span style="margin-left:6px ;">颜色</span><input type="color" id="newColor"/>
+			<span>粗细</span><input type="number" id="newNumber" min="1" value="1" />
+			<button id="but">清空</button>
+			<button id="but1">直线</button>
+			<button id="but2">随便画</button>
+			<button id="but3">空心圆</button>
+			<button id="but4">实心圆</button>
+			<button id="but5">空心矩形</button>
+			<button id="but6">实心矩形</button>
+			<button id="but7">橡皮擦</button>
+			<span>橡皮直径</span><input type="number" id="newEraser" min="5" value="5" />
+
+		</nav>
+		<canvas id="myCanvas" width="1000" height="700">您的浏览器不支持canvas，请更新浏览器的版本</canvas>
+	</body>
+	<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/canvasH.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
