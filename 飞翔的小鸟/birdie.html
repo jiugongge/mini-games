@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>飞翔的小鸟</title>
+		<!--css-->
+		<link rel="stylesheet" type="text/css" href="css/birdie.css" />
+	</head>
+
+	<body>
+		<!--游戏容器-->
+		<div id="wrap">
+			<!--得分-->
+			<div id="score"><img src="img2/0.jpg" /></div>
+			<!--滚动条-->
+			<div class="scollDiv">
+				<!--01-->
+				<div class="sco_k"></div>
+				<!--02-->
+				<div class="sco_l"></div>
+			</div>
+			<!--管道显示容器-->
+			<div id="pipeWrap">
+				<!--<div class="pipe">
+					<div class="topItem">
+						<span class="topHead"></span>
+					</div>
+					<div class="bottomItem">
+						<span class="bottomHead"></span>
+					</div>
+				</div>-->
+			</div>
+			<!--飞翔的小鸟-->
+			<div id="bird"></div>
+			<!--游戏开始页面-->
+			<div id="gameStart">
+				<!--上部分-->
+				<div class="gam_k">
+					<img src="img2/head.jpg" />
+					<!--小鸟-->
+					<div id="img_02"></div>
+				</div>
+				<!--下部分-->
+				<div class="gam_l">
+					<img src="img2/start.jpg" id="img_b" />
+					<img src="img2/submit.jpg" id="img_c" />
+				</div>
+			</div>
+			<!--游戏结束框-->
+			<div id="gameOver">
+				<!--上部分-->
+				<img src="img2/game_over.jpg" class="game_k" />
+				<!--得分-->
+				<div class="game_l">
+					<!--小鸟-->
+					<div id="img_03" ></div>
+					<!--得分-->
+					<div id="game_r">0</div>
+					<!--最高得分-->
+					<div id="game_u">0</div>
+				</div>
+				<!--确定-->
+				<img src="img2/ok.jpg" alt="" id="game_s" />
+			</div>
+		</div>
+
+		<script src="js/birdie.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
