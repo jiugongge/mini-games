@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>魔方</title>
+		<style type="text/css">
+			@keyframes name{
+				from{
+					-webkit-transform: rotateY(0deg) rotateZ(35deg) rotateX(45deg);
+				}
+				to{
+					-webkit-transform: rotateY(180000deg) rotateZ(35deg) rotateX(45deg);
+				}
+			}
+			
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				height: 100%;
+			}
+			
+			body {
+				height: 100%;
+				
+				background: black;
+			}
+			
+			
+			.wrap {
+				width: 250px;
+				height: 250px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -125px;
+				margin-top: -125px;
+				-webkit-transform: rotateY(0deg) rotateZ(35deg) rotateX(45deg);
+				/*开启3d空间*/
+				transform-style: preserve-3d;
+				/*观察者的距离，在父级的位置*/
+				/*perspective: -125px;*/
+				/*设置观察者位置*/
+				perspective-origin: center;
+				animation: name  5000s linear infinite;
+				
+			}
+			
+			.wrap div {
+				width: 250px;
+				height: 250px;
+				border: cyan 2px solid;
+				/*background: gainsboro;*/
+				position: absolute;
+				left: 0;
+				top: 0;
+				box-shadow: inset 10px 10px 250px blueviolet, 0 0 550px #00FFFF ;
+				text-align: center;
+				line-height: 250px;
+				font-size: 185px;
+				color: red;
+			}
+			.wrap div p{
+				transform: rotate(45deg);
+			}
+			.wrap div .p1{
+				transform: rotate(-45deg);
+			}
+			
+			.wrap div:nth-child(1) {
+				transform: rotateY(0deg) translate3d(0, 0, 125px);
+				box-shadow: inset 10px 10px 250px slateblue;
+			}
+			
+			.wrap div:nth-child(2) {
+				-webkit-transform: rotateY(90deg) translate3d(0, 0, 125px);
+				transform: rotateY(90deg) translate3d(0, 0, 125px);
+				box-shadow: inset 10px 10px 250px slateblue;
+			}
+			.wrap div:nth-child(3) {
+				
+				-webkit-transform: rotateY(0deg) translate3d(0, 0, -125px);
+				transform: rotateY(0deg)  rotateZ(-180deg) translate3d(0, 0, -125px);
+				box-shadow: inset 10px 10px 250px slateblue;
+			}
+			.wrap div:nth-child(4) {
+				box-shadow: inset 10px 10px 250px slateblue;
+				-webkit-transform: rotateY(-90deg) translate3d(0, 0, 125px);
+				transform: rotateY(-90deg) translate3d(0, 0, 125px);
+			}
+			.wrap div:nth-child(5) {
+				box-shadow: inset 10px 10px 250px slateblue;
+				-webkit-transform: rotateX(90deg) rotateZ(-180deg) translate3d(0, 0, 125px);
+				
+			}
+			.wrap div:nth-child(6) {
+				box-shadow: inset 10px 10px 250px slateblue;
+				-webkit-transform: rotateX(90deg)  rotateY(180deg) rotateZ(180deg)  translate3d(0, 0, 125px);
+				
+			}
+			.wrap div:nth-child(7) {
+				
+				-webkit-transform: rotateX(90deg) translate3d(0, 0, -41.6px);
+				transform: rotateX(90deg) translate3d(0, 0, -41.6px);
+			}
+			.wrap div:nth-child(8) {
+				
+				-webkit-transform: rotateX(90deg) translate3d(0, 0, 41.6px);
+				transform: rotateX(90deg) translate3d(0, 0, 41.6px);
+			}
+			.wrap div:nth-child(9) {
+				
+				-webkit-transform: rotateY(0deg) translate3d(0, 0, -41.6px);
+				transform: rotateX(0deg) translate3d(0, 0, -41.6px);
+			}
+			.wrap div:nth-child(10) {
+				
+				-webkit-transform: rotateY(0deg) translate3d(0, 0, 41.6px);
+				transform: rotateX(0deg) translate3d(0, 0, 41.6px);
+			}
+			.wrap div:nth-child(11) {
+				
+				-webkit-transform: rotateY(90deg) translate3d(0, 0, -41.6px);
+				
+			}
+			.wrap div:nth-child(12) {
+				
+				-webkit-transform: rotateY(90deg) translate3d(0, 0, 41.6px);
+				
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box1"><p class="p1">1</p></div>
+			<div class="box2"><p class="p1">2</p></div>
+			<div class="box3"><p class="p1">3</p></div>
+			<div class="box4"><p>4</p></div>
+			<div class="box5"><p>5</p></div>
+			<div class="box6"><p class="p1">6</p></div>
+			<div class="box7"></div>
+			<div class="box8"></div>
+			<div class="box9"></div>
+			<div class="box10"></div>
+			<div class="box11"></div>
+			<div class="box12"></div>
+		</div>
+
+	</body>
+
+</html>
